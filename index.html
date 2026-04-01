@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Umesha Gunasinghe | Accessible Portfolio</title>
+<meta name="description" content="Portfolio of Umesha Gunasinghe, Technical Writer and documentation specialist based in Germany.">
+<style>
+:root{
+  --ink:#0f172a;
+  --muted:#334155;
+  --line:#cbd5e1;
+  --card:#ffffff;
+  --brand:#1d4ed8;
+  --brand-2:#6d28d9;
+  --brand-3:#0f766e;
+  --soft-blue:#eaf2ff;
+  --soft-violet:#f3ecff;
+  --soft-teal:#e9fbf7;
+  --shadow:0 12px 28px rgba(15,23,42,0.08);
+  --max:1180px;
+  --focus:#0f172a;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family:Inter, "Segoe UI", Arial, sans-serif;
+  color:var(--ink);
+  background:
+    radial-gradient(circle at 0% 0%, rgba(29,78,216,0.07), transparent 28%),
+    radial-gradient(circle at 100% 10%, rgba(124,58,237,0.06), transparent 24%),
+    linear-gradient(180deg, #fcfdff 0%, #f5f8fc 100%);
+  line-height:1.7;
+  font-size:16px;
+}
+img{max-width:100%; display:block}
+a{color:var(--brand); text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible, button:focus-visible{
+  outline:3px solid var(--focus);
+  outline-offset:3px;
+  border-radius:8px;
+}
+.skip-link{
+  position:absolute;
+  left:-9999px;
+  top:auto;
+  width:1px;
+  height:1px;
+  overflow:hidden;
+}
+.skip-link:focus{
+  left:16px;
+  top:16px;
+  width:auto;
+  height:auto;
+  padding:12px 16px;
+  background:#fff;
+  color:#000;
+  z-index:1000;
+  border:2px solid var(--focus);
+  border-radius:12px;
+}
+.wrap{width:min(var(--max), calc(100% - 32px)); margin:0 auto;}
+.topbar{
+  position:sticky; top:0; z-index:20;
+  background:rgba(252,253,255,0.96);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(203,213,225,0.95);
+}
+.nav{
+  min-height:72px; display:flex; align-items:center; justify-content:space-between; gap:16px;
+}
+.logo{display:flex; align-items:center; gap:12px; font-weight:800; letter-spacing:0.2px;}
+.logo-mark{
+  width:36px; height:36px; border-radius:12px;
+  background:linear-gradient(135deg, var(--brand), var(--brand-2));
+  box-shadow:0 8px 18px rgba(29,78,216,0.2); position:relative;
+}
+.logo-mark:before,.logo-mark:after{
+  content:""; position:absolute; inset:8px; border:2px solid rgba(255,255,255,0.95); border-radius:8px;
+}
+.logo-mark:after{inset:14px; border-radius:4px; opacity:0.75;}
+.nav-links{display:flex; gap:20px; flex-wrap:wrap;}
+.nav-links a{color:#1e293b; font-size:0.95rem; font-weight:700;}
+.hero{padding:36px 0 20px;}
+.hero-card{
+  background:linear-gradient(135deg, #ffffff 0%, #fbfdff 100%);
+  border:1px solid var(--line);
+  border-radius:28px;
+  box-shadow:var(--shadow);
+  overflow:hidden;
+}
+.hero-grid{display:grid; grid-template-columns:1.2fr 0.8fr; align-items:stretch;}
+.hero-copy{padding:36px;}
+.kicker{
+  display:inline-flex; align-items:center; gap:10px;
+  background:linear-gradient(135deg, var(--soft-blue), var(--soft-violet));
+  border:1px solid #d9e7ff; color:#173a6b; padding:8px 14px;
+  border-radius:999px; font-size:0.92rem; font-weight:700; margin-bottom:18px;
+}
+h1,h2,h3,h4{line-height:1.2}
+h1{
+  margin:0 0 14px;
+  font-size:clamp(2.2rem, 4.5vw, 4.6rem);
+  letter-spacing:-0.04em;
+}
+.hero-copy p{margin:0 0 18px; color:var(--muted); font-size:1.04rem; max-width:62ch;}
+.cta{display:flex; flex-wrap:wrap; gap:12px; margin:18px 0 0;}
+.btn{
+  display:inline-flex; align-items:center; justify-content:center; padding:13px 18px;
+  border-radius:14px; font-weight:700; transition:0.18s ease; border:1px solid transparent;
+  min-height:44px;
+}
+.btn:hover{text-decoration:none; transform:translateY(-1px);}
+.btn-primary{
+  background:linear-gradient(135deg, var(--brand), var(--brand-2)); color:#fff;
+  box-shadow:0 12px 24px rgba(29,78,216,0.16);
+}
+.btn-secondary{background:#fff; color:var(--ink); border-color:var(--line);}
+.signature-row{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:14px; margin-top:22px;}
+.signature{
+  border:1px solid var(--line); border-radius:18px; padding:16px; background:#fff;
+}
+.signature b{display:block; margin-bottom:4px; font-size:1.02rem;}
+.signature span{color:var(--muted); font-size:0.94rem;}
+.hero-side{
+  padding:24px;
+  background:linear-gradient(180deg, rgba(234,242,255,0.85), rgba(243,236,255,0.7) 48%, rgba(233,251,247,0.82) 100%);
+  border-left:1px solid var(--line);
+  display:flex; flex-direction:column; justify-content:center; gap:18px;
+}
+.portrait-card{
+  background:rgba(255,255,255,0.96); border:1px solid rgba(255,255,255,0.95);
+  border-radius:24px; padding:14px; box-shadow:0 10px 24px rgba(15,23,42,0.08);
+}
+.portrait-card img{
+  width:100%; aspect-ratio:4/5; object-fit:cover; object-position:center top; border-radius:18px; background:#dfe7f3;
+}
+.portrait-caption{margin-top:12px; font-size:0.94rem; color:#334155; text-align:center;}
+.concept-panel{
+  background:rgba(255,255,255,0.95); border:1px solid rgba(255,255,255,0.95); border-radius:24px; padding:18px;
+}
+.concept-title{
+  font-size:0.9rem; font-weight:800; color:#173a6b; margin-bottom:12px; text-transform:uppercase; letter-spacing:0.08em;
+}
+.concept-lines{display:grid; gap:12px;}
+.concept-line{display:flex; align-items:flex-start; gap:12px;}
+.concept-dot{
+  width:12px; height:12px; border-radius:999px; flex:0 0 12px; margin-top:7px;
+  background:linear-gradient(135deg, var(--brand), var(--brand-2));
+}
+.concept-line strong{display:block; margin-bottom:2px; font-size:0.98rem;}
+section{padding:20px 0;}
+.section-head{display:flex; align-items:end; justify-content:space-between; gap:20px; margin-bottom:16px;}
+.section-head h2{margin:0; font-size:1.6rem; letter-spacing:-0.03em;}
+.section-head p{margin:0; color:var(--muted);}
+.grid-2{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+.card{
+  background:var(--card); border:1px solid var(--line); border-radius:24px; box-shadow:var(--shadow); padding:24px;
+}
+.card h3{margin:0 0 10px; font-size:1.1rem; letter-spacing:-0.01em;}
+.muted{color:var(--muted);}
+.pill-row{display:flex; flex-wrap:wrap; gap:10px; margin-top:18px;}
+.pill{
+  padding:8px 12px; border-radius:999px; font-size:0.9rem; font-weight:700; border:1px solid var(--line); background:#fafcff; color:#1e293b;
+}
+.timeline{display:grid; gap:18px;}
+.timeline-item{display:grid; grid-template-columns:22px 1fr; gap:14px;}
+.timeline-dot{
+  width:14px; height:14px; border-radius:999px; margin-top:7px;
+  background:linear-gradient(135deg, var(--brand), var(--brand-2)); box-shadow:0 0 0 6px rgba(124,58,237,0.08);
+}
+.timeline-body{border-left:1px solid var(--line); padding-left:16px; padding-bottom:10px;}
+.timeline-body h4{margin:0 0 4px; font-size:1rem;}
+.meta{color:#475569; font-size:0.95rem; margin-bottom:8px;}
+.project-list{display:grid; gap:14px;}
+.project{
+  border:1px solid var(--line); border-radius:20px; padding:18px;
+  background:linear-gradient(180deg, #fff, #fbfdff); position:relative; overflow:hidden;
+}
+.project:before{
+  content:""; position:absolute; inset:0 auto 0 0; width:4px; background:linear-gradient(180deg, var(--brand), var(--brand-2), var(--brand-3));
+}
+.project strong{display:block; margin-bottom:6px; font-size:1.02rem;}
+.tag{
+  display:inline-block; margin-top:12px; padding:6px 10px; border-radius:999px; font-size:0.84rem; font-weight:800;
+  background:#eef4ff; color:#173a6b; border:1px solid #d9e7ff;
+}
+.stat{
+  padding:20px; border-radius:20px; background:linear-gradient(180deg, #ffffff, #fbfdff); border:1px solid var(--line); box-shadow:var(--shadow);
+}
+.stat strong{display:block; font-size:1.8rem; margin-bottom:6px;}
+.case-study{
+  border:1px solid var(--line); border-radius:28px; box-shadow:var(--shadow); overflow:hidden; background:#fff;
+}
+.case-study-head{
+  display:grid; grid-template-columns:1.1fr 0.9fr; gap:0; align-items:stretch;
+  background:linear-gradient(135deg, #ffffff 0%, #f8fbff 100%);
+}
+.case-copy{padding:28px;}
+.case-visual{
+  min-height:260px;
+  background:linear-gradient(180deg, rgba(234,242,255,0.88), rgba(243,236,255,0.72));
+  border-left:1px solid var(--line);
+  display:flex; align-items:center; justify-content:center; padding:24px;
+}
+.case-visual-card{
+  width:100%; max-width:420px; background:#fff; border:1px solid var(--line); border-radius:22px; padding:18px; box-shadow:var(--shadow);
+}
+.case-visual-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:12px;}
+.mini-phase{
+  border:1px solid var(--line); border-radius:14px; padding:10px; background:#fbfdff; text-align:center; font-size:0.84rem; font-weight:700; color:#334155;
+}
+.case-layout{display:grid; grid-template-columns:repeat(4,1fr); gap:16px; padding:24px 28px 28px;}
+.case-box{
+  border:1px solid var(--line); border-radius:20px; padding:18px; background:#fff;
+}
+.case-box h4{margin:0 0 10px; font-size:1rem;}
+.case-box ul{margin:0; padding-left:18px; color:var(--muted);}
+.case-box p{margin:0; color:var(--muted);}
+.detail-hero{padding:32px 0 18px;}
+.detail-grid{display:grid; grid-template-columns:1.1fr 0.9fr; gap:20px;}
+.detail-panel{
+  background:#fff; border:1px solid var(--line); border-radius:24px; box-shadow:var(--shadow); padding:26px;
+}
+.detail-panel h1{font-size:clamp(2rem,4vw,3.2rem); letter-spacing:-0.03em}
+.metric-list{display:grid; gap:12px;}
+.metric-line{padding:12px 14px; border:1px solid var(--line); border-radius:14px; background:#fbfdff;}
+.split-band{display:grid; grid-template-columns:1.1fr 0.9fr; gap:20px;}
+.quote-card{background:linear-gradient(135deg, #0f172a, #1e293b); color:#e2e8f0; border:none;}
+.quote-card .small{
+  color:#bfdbfe; text-transform:uppercase; letter-spacing:0.08em; font-size:0.8rem; font-weight:800; margin-bottom:12px;
+}
+.quote-card blockquote{margin:0; font-size:1.3rem; line-height:1.5; letter-spacing:-0.02em;}
+.contact-list{display:grid; gap:12px; margin-top:12px;}
+.contact-line{padding:14px 16px; border-radius:16px; background:#fbfdff; border:1px solid var(--line);}
+ul.clean{margin:10px 0 0; padding-left:18px; color:var(--muted);}
+footer{padding:20px 0 42px; text-align:center; color:#475569; font-size:0.94rem;}
+
+@media (max-width: 1100px){
+  .case-layout{grid-template-columns:repeat(2,1fr);}
+}
+@media (max-width: 960px){
+  .hero-grid, .grid-2, .grid-3, .split-band, .case-study-head, .detail-grid{grid-template-columns:1fr;}
+  .hero-side, .case-visual{border-left:none; border-top:1px solid var(--line);}
+  .signature-row{grid-template-columns:1fr;}
+  .nav{align-items:flex-start; flex-direction:column; padding:14px 0;}
+}
+@media (max-width: 680px){
+  body{font-size:15px;}
+  .wrap{width:min(var(--max), calc(100% - 20px));}
+  .nav-links{gap:14px;}
+  .hero-copy, .hero-side, .card, .case-copy, .case-visual, .case-layout, .detail-panel{padding:20px;}
+  .case-layout{grid-template-columns:1fr;}
+  .btn{width:100%;}
+  .cta{flex-direction:column;}
+}
+
+[data-theme="dark"]{
+  --ink:#e5eefc;
+  --muted:#c4d0e3;
+  --line:#334155;
+  --card:#0f172a;
+  --soft-blue:#13253e;
+  --soft-violet:#24153d;
+  --soft-teal:#0e2b28;
+  --shadow:0 12px 28px rgba(0,0,0,0.35);
+  --focus:#ffffff;
+}
+[data-theme="dark"] body{
+  background:
+    radial-gradient(circle at 0% 0%, rgba(29,78,216,0.18), transparent 28%),
+    radial-gradient(circle at 100% 10%, rgba(124,58,237,0.14), transparent 24%),
+    linear-gradient(180deg, #020617 0%, #0b1220 100%);
+}
+[data-theme="dark"] .topbar{
+  background:rgba(2,6,23,0.92);
+  border-bottom:1px solid rgba(51,65,85,0.95);
+}
+[data-theme="dark"] .nav-links a,
+[data-theme="dark"] .logo,
+[data-theme="dark"] a{color:#cfe1ff}
+[data-theme="dark"] .hero-card,
+[data-theme="dark"] .card,
+[data-theme="dark"] .case-study,
+[data-theme="dark"] .detail-panel,
+[data-theme="dark"] .signature,
+[data-theme="dark"] .case-box,
+[data-theme="dark"] .case-visual-card,
+[data-theme="dark"] .stat,
+[data-theme="dark"] .metric-line,
+[data-theme="dark"] .contact-line,
+[data-theme="dark"] .project,
+[data-theme="dark"] .portrait-card,
+[data-theme="dark"] .concept-panel{
+  background:#0f172a;
+}
+[data-theme="dark"] .hero-card,
+[data-theme="dark"] .case-study-head{
+  background:linear-gradient(135deg, #0f172a 0%, #111827 100%);
+}
+[data-theme="dark"] .hero-side,
+[data-theme="dark"] .case-visual{
+  background:linear-gradient(180deg, rgba(19,37,62,0.92), rgba(36,21,61,0.88));
+}
+[data-theme="dark"] .pill{background:#111827;color:#e5eefc}
+[data-theme="dark"] .btn-secondary{background:#0f172a;color:#e5eefc}
+[data-theme="dark"] .portrait-caption,
+[data-theme="dark"] .meta,
+[data-theme="dark"] footer{color:#c4d0e3}
+
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to main content</a>
+<header class="topbar">
+  <div class="wrap nav">
+    <a class="logo" href="index.html" aria-label="Go to portfolio home">
+      <span class="logo-mark" aria-hidden="true"></span>
+      <span>Umesha Gunasinghe</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="#about">About</a><a href="#case-studies">Case Studies</a><a href="#publications">Selected Works</a><a href="#blogs">Blogs</a><a href="#contact">Contact</a>
+    <button id="theme-toggle" class="btn btn-secondary" type="button" aria-pressed="false" style="margin-left:8px;">Switch to dark mode</button>
+  </div>
+</header>
+
+<main id="main-content" class="wrap">
+  <section class="hero" aria-labelledby="hero-title">
+    <div class="hero-card">
+      <div class="hero-grid">
+        <div class="hero-copy">
+          <div class="kicker">Technical Writer • AI-Augmented Documentation Systems</div>
+          <h1 id="hero-title">Documentation that scales with complex systems — not just explains them.</h1>
+          <p>10+ years across enterprise platforms, AI systems, and developer ecosystems. Builds documentation as a product layer, improving adoption, reducing friction, and aligning engineering with real user understanding.</p>
+          <div class="cta">
+            <a class="btn btn-primary" href="mailto:umeshagunasinghe@gmail.com" aria-label="Email Umesha Gunasinghe">Email Me</a>
+            <a class="btn btn-secondary" href="https://www.linkedin.com/in/umeshagunasinghe/" target="_blank" rel="noopener" aria-label="Open LinkedIn profile in a new tab">LinkedIn</a><a class="btn btn-secondary" href="cv.pdf" target="_blank" rel="noopener" aria-label="Open CV PDF in a new tab">Download CV</a>
+          </div>
+          <div class="signature-row" aria-label="Key highlights">
+            <div class="signature"><b>10+ years in IT</b><span>Technical writing, solution engineering, user education, and software communication.</span></div>
+            <div class="signature"><b>18+ releases</b><span>Release-aligned documentation and enablement across global product cycles.</span></div>
+            <div class="signature"><b>5+ AI initiatives</b><span>AI transformation work across user education and R&D readiness.</span></div>
+          </div>
+        </div>
+        <aside class="hero-side" aria-label="Professional profile summary">
+          <figure class="portrait-card">
+            <img src="profile.jpg" alt="Portrait photo of Umesha Gunasinghe">
+            <figcaption class="portrait-caption">Technical communicator, documentation strategist, and AI ethics advocate based in Berlin.</figcaption>
+          </figure>
+          <div class="concept-panel">
+            <div class="concept-title">Professional signature</div>
+            <div class="concept-lines">
+              <div class="concept-line"><div class="concept-dot" aria-hidden="true"></div><div><strong>Structured documentation</strong><div class="muted">Product documentation, user education, release material, process models, and technical guides.</div></div></div>
+              <div class="concept-line"><div class="concept-dot" aria-hidden="true"></div><div><strong>Cross-functional influence</strong><div class="muted">Engineering, product, customer, and executive collaboration in complex environments.</div></div></div>
+              <div class="concept-line"><div class="concept-dot" aria-hidden="true"></div><div><strong>Human-centered AI</strong><div class="muted">Applying AI to documentation workflows with trust, usability, and governance in mind.</div></div></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="working-with-me-title">
+    <div class="card">
+      <h2 id="working-with-me-title">What you get working with me</h2>
+      <ul class="clean">
+        <li>Documentation that reduces support and onboarding friction</li>
+        <li>Structured content that scales with product complexity</li>
+        <li>AI-assisted workflows without loss of accuracy or control</li>
+        <li>Clear alignment between product behavior and user understanding</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="about" aria-labelledby="about-title">
+    <div class="section-head"><div><h2 id="about-title">About</h2><p>Built from a real technical communication track record.</p></div></div>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Profile</h3>
+        <p class="muted">Technical writer and documentation developer with experience spanning enterprise software, SaaS, middleware, telecommunications, and AI-enabled content operations. Work includes user education materials, technical and functional product documentation, online help, process models, release support, training recordings, developer-facing content, and documentation framework improvement.</p>
+        <p class="muted">Based in Germany and building a long-term career across the EU tech ecosystem.</p>
+        <div class="pill-row" aria-label="Core areas">
+          <span class="pill">Technical Writing</span><span class="pill">Documentation Strategy</span><span class="pill">User Education</span><span class="pill">Doc-as-Code</span><span class="pill">Generative AI</span><span class="pill">Accessibility</span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Core strengths</h3>
+        <ul class="clean">
+          <li>Leading user education and documentation guilds across global release cycles</li>
+          <li>Designing AI-powered documentation workflows using Confluence AI, ClickLearn, Figma, and structured tooling</li>
+          <li>Driving cross-functional collaboration between engineering, product, and customer teams</li>
+          <li>Delivering user guides, articles, presentations, process documentation, and enablement content</li>
+          <li>Blending documentation, solution architecture thinking, and stakeholder communication</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="highlights-title">
+    <div class="section-head"><div><h2 id="highlights-title">Highlights</h2><p>Fast signal for hiring managers.</p></div></div>
+    <div class="grid-3">
+      <div class="stat"><strong>45+</strong><div class="muted">User Education Specialists in the guild led and mentored</div></div>
+      <div class="stat"><strong>100+</strong><div class="muted">Technical artifacts created, edited, or reviewed</div></div>
+      <div class="stat"><strong>50+</strong><div class="muted">Technical calls, demos, or solution engagements in customer-facing roles</div></div>
+    </div>
+  </section>
+
+  <section id="experience" aria-labelledby="experience-title">
+    <div class="section-head"><div><h2 id="experience-title">Experience</h2><p>Timeline shaped from core CV path.</p></div></div>
+    <div class="grid-2">
+      <div class="card">
+        <div class="timeline">
+          <div class="timeline-item"><div class="timeline-dot" aria-hidden="true"></div><div class="timeline-body"><h3>Lead Technical Writer – User Education · IFS R&amp;D</h3><div class="meta">Aug 2023 – Aug 2025 · Colombo, Sri Lanka</div><div class="muted">Led user education work across 18+ releases, supported 5+ creation tools, mentored a 45+ member guild, and drove 5+ AI transformation initiatives with C-level stakeholders.</div></div></div>
+          <div class="timeline-item"><div class="timeline-dot" aria-hidden="true"></div><div class="timeline-body"><h3>Senior Technical Writer · Wiley</h3><div class="meta">Mar 2021 – Aug 2023 · Colombo, Sri Lanka</div><div class="muted">Created, edited, and reviewed 100+ technical artifacts while leading technical communication, training, and community building for 200+ colleagues.</div></div></div>
+          <div class="timeline-item"><div class="timeline-dot" aria-hidden="true"></div><div class="timeline-body"><h3>Senior Technical Sales Engineer · Wavenet</h3><div class="meta">Sep 2017 – Feb 2018 · Colombo, Sri Lanka</div><div class="muted">Responded to 20+ RFP/RFI technical documents and proposed improvements to 15+ software systems using telecommunications solutions.</div></div></div>
+          <div class="timeline-item"><div class="timeline-dot" aria-hidden="true"></div><div class="timeline-body"><h3>Solutions Engineer / Software Engineer – Technical Sales · WSO2</h3><div class="meta">Jul 2013 – Dec 2015 · Colombo, Sri Lanka</div><div class="muted">Supported 5+ overseas engagements and 100+ technical calls, demos, presentations, and solution documentation activities across middleware projects.</div></div></div>
+          <div class="timeline-item"><div class="timeline-dot" aria-hidden="true"></div><div class="timeline-body"><h3>Software Engineer · Calcey</h3><div class="meta">Jan 2011 – Dec 2011 · Colombo, Sri Lanka</div><div class="muted">Worked on planning, coding, testing, issue fixing, and software deployment using agile practices and Microsoft technologies.</div></div></div>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Featured capability areas</h3>
+        <div class="project-list">
+          <div class="project"><strong>User education at scale</strong><div class="muted">Developed user education materials, technical and functional documentation, release content, process models, and training recordings.</div><span class="tag">Enablement</span></div>
+          <div class="project"><strong>AI-powered documentation workflows</strong><div class="muted">Worked on doc-as-code improvements and AI-enabled content operations using Confluence, Figma, ClickLearn, ChatGPT Enterprise, and Copilot.</div><span class="tag">AI + Docs</span></div>
+          <div class="project"><strong>Solution communication and technical pre-sales</strong><div class="muted">Supported customers through demos, technical calls, solution architecture discussions, RFP/RFI responses, and deployment guidance.</div><span class="tag">Technical Communication</span></div>
+          <div class="project"><strong>Thought leadership direction</strong><div class="muted">Exploring the intersection of documentation, ethics, consciousness, and AI through Digital Samsara and responsible innovation themes.</div><span class="tag">Personal Brand</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="case-studies" aria-labelledby="case-title">
+    <div class="section-head"><div><h2 id="case-title">Case Studies</h2><p>Click into each project for the full story.</p></div></div>
+
+    <article class="case-study" aria-labelledby="vtol-title">
+      <div class="case-study-head">
+        <div class="case-copy">
+          <div class="kicker">Case Study 01 • Aerospace Documentation</div>
+          <h3 id="vtol-title" style="margin:0 0 14px; font-size:2rem; letter-spacing:-1px;">Designing a VTOL Aircraft Technical Guide</h3>
+          <p class="muted">Structuring a complex aerospace system into clear, accessible, and scalable documentation.</p>
+          <div class="pill-row"><span class="pill">Technical Writing</span><span class="pill">Aerospace</span><span class="pill">Accessibility</span><span class="pill">Visual Design</span><span class="pill">Future-Proofing</span></div>
+          <div class="cta"><a class="btn btn-primary" href="vtol-case-study.html" aria-label="View VTOL case study">View Case Study</a></div>
+        </div>
+        <div class="case-visual">
+          <div class="case-visual-card" aria-label="VTOL phases visual summary">
+            <strong style="font-size:1rem;">VTOL flight phases</strong>
+            <div class="muted" style="font-size:0.92rem;">The guide explains the system through a simple three-phase model.</div>
+            <div class="case-visual-grid"><div class="mini-phase">Vertical<br>Takeoff</div><div class="mini-phase">Transition</div><div class="mini-phase">Fixed-Wing<br>Cruise</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="case-layout">
+        <div class="case-box"><h4>Outcome</h4><p>A structured documentation system that translates complex aerospace concepts into clear, operationally usable content.</p></div>
+        <div class="case-box"><h4>What this signals</h4><ul><li>Deep technical domain handling without oversimplification</li><li>Strong information architecture and content structuring</li><li>Accessibility, usability, and real-world context awareness</li></ul></div>
+        <div class="case-box"><h4>Approach</h4><ul><li>Version-controlled guide</li><li>Comparisons, tables, and visuals</li><li>Mission scenario for practical context</li></ul></div>
+        <div class="case-box"><h4>Format</h4><p>Technical guide built for mixed technical and operational readers.</p></div>
+      </div>
+    </article>
+
+    <div style="height:24px" aria-hidden="true"></div>
+
+    <article class="case-study" aria-labelledby="magma-title">
+      <div class="case-study-head">
+        <div class="case-copy">
+          <div class="kicker">Case Study 02 • AI + Video Documentation</div>
+          <h3 id="magma-title" style="margin:0 0 14px; font-size:2rem; letter-spacing:-1px;">AI Product Demo Workflow (MAGMA Platform)</h3>
+          <p class="muted">Turning evolving product functionality into a clear, reusable demo experience.</p>
+          <div class="pill-row"><span class="pill">AI Content Creation</span><span class="pill">Video Production</span><span class="pill">Product Storytelling</span><span class="pill">SaaS</span></div>
+          <div class="cta"><a class="btn btn-primary" href="magma-case-study.html" aria-label="View MAGMA case study">View Case Study</a></div>
+        </div>
+        <div class="case-visual">
+          <div class="case-visual-card" aria-label="AI workflow visual summary">
+            <strong style="font-size:1rem;">AI workflow</strong>
+            <div class="case-visual-grid"><div class="mini-phase">Script</div><div class="mini-phase">Voice AI</div><div class="mini-phase">Video Build</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="case-layout">
+        <div class="case-box"><h4>Outcome</h4><p>A reusable product demo workflow that aligns evolving features with user-facing clarity.</p></div>
+        <div class="case-box"><h4>What this signals</h4><ul><li>Multi-format technical communication beyond written docs</li><li>Practical use of AI tools inside controlled production workflows</li><li>Strong connection between product behavior and user understanding</li></ul></div>
+        <div class="case-box"><h4>Tools</h4><ul><li>ElevenLabs</li><li>Canva Pro</li><li>OBS</li><li>AI-assisted scripting</li></ul></div>
+        <div class="case-box"><h4>Format</h4><p>Go-to-market product demo video with reusable assets.</p></div>
+      </div>
+    </article>
+
+    <div style="height:24px" aria-hidden="true"></div>
+
+    <article class="case-study" aria-labelledby="wso2-title">
+      <div class="case-study-head">
+        <div class="case-copy">
+          <div class="kicker">Case Study 03 • Enterprise Architecture Communication</div>
+          <h3 id="wso2-title" style="margin:0 0 14px; font-size:2rem; letter-spacing:-1px;">Enterprise Architecture Webinar (WSO2)</h3>
+          <p class="muted">Communicating distributed systems concepts to a technical audience.</p>
+          <div class="pill-row"><span class="pill">Enterprise Architecture</span><span class="pill">Middleware</span><span class="pill">Technical Presentation</span><span class="pill">Webinar</span></div>
+          <div class="cta"><a class="btn btn-primary" href="wso2-case-study.html" aria-label="View WSO2 case study">View Case Study</a></div>
+        </div>
+        <div class="case-visual">
+          <div class="case-visual-card" aria-label="Architecture communication flow summary">
+            <strong style="font-size:1rem;">Communication arc</strong>
+            <div class="case-visual-grid"><div class="mini-phase">Pattern</div><div class="mini-phase">Platform</div><div class="mini-phase">Implementation</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="case-layout">
+        <div class="case-box"><h4>Outcome</h4><p>A technically grounded communication of enterprise architecture, bridging implementation detail with conceptual clarity.</p></div>
+        <div class="case-box"><h4>What this signals</h4><ul><li>Clear communication of complex systems and architecture concepts</li><li>Technical storytelling in public-facing formats</li><li>Strong understanding of platform architecture and integration patterns</li></ul></div>
+        <div class="case-box"><h4>Role</h4><ul><li>Co-created presentation</li><li>Co-presented webinar</li><li>Helped shape technical narrative</li></ul></div>
+        <div class="case-box"><h4>Format</h4><p>Public webinar and technical presentation for an enterprise platform audience.</p></div>
+      </div>
+    </article>
+  </section>
+
+  <section id="publications" aria-labelledby="works-title">
+    <div class="section-head"><div><h2 id="works-title">Selected Work &amp; Thinking</h2><p>Work that reflects both execution and perspective — across AI, architecture, and technical systems.</p></div></div>
+
+    <article class="case-study" aria-labelledby="two-layer-title">
+      <div class="case-copy">
+        <div class="kicker">AI + Documentation Architecture</div>
+        <h3 id="two-layer-title">Future of Documentation: Two-Layered Architecture</h3>
+        <p class="muted">A system-level model separating machine-readable truth from human-readable explanation to reduce hallucinations and improve scalability. This model reflects a shift toward documentation as infrastructure for AI systems.</p>
+        <div class="pill-row"><span class="pill">AI Docs</span><span class="pill">DocOps</span><span class="pill">Architecture</span></div>
+        <div class="cta"><a class="btn btn-primary" href="thought-leadership.html" aria-label="Open thought leadership detail page">View Details</a></div>
+      </div>
+    </article>
+
+    <div style="height:24px" aria-hidden="true"></div>
+
+    <article class="case-study" aria-labelledby="xacml-title">
+      <div class="case-copy">
+        <div class="kicker">Security • Identity Systems</div>
+        <h3 id="xacml-title">Fine-Grained XACML Authorization with PIP Points</h3>
+        <p class="muted">Deep dive into policy-based access control using XACML, showing how external data enhances authorization decisions in real systems. Represents hands-on experience with real-world security and identity systems.</p>
+        <div class="pill-row"><span class="pill">XACML</span><span class="pill">Security</span><span class="pill">Identity Server</span><span class="pill">Access Control</span></div>
+        <div class="cta"><a class="btn btn-primary" href="https://wso2.com/library/articles/2013/11/fine-grained-xacml-authoriation-with-pip-points/" target="_blank" rel="noopener" aria-label="Open WSO2 XACML article in a new tab">View Article</a></div>
+      </div>
+    </article>
+  </section>
+
+  <section id="blogs" aria-labelledby="blogs-title">
+    <div class="section-head"><div><h2 id="blogs-title">Blogs</h2><p>Ongoing writing that reflects thinking beyond immediate project work.</p></div></div>
+    <div class="grid-2">
+      <div class="card">
+        <h3>Medium</h3>
+        <p class="muted">Writing and reflections published under Umesha Gunasinghe, covering technical communication, documentation thinking, and broader technology perspectives.</p>
+        <div class="cta"><a class="btn btn-primary" href="https://medium.com/@umeshagunasinghe" target="_blank" rel="noopener" aria-label="Open Medium profile in a new tab">Visit Medium</a></div>
+      </div>
+      <div class="card">
+        <h3>Tech Thoughts Blog</h3>
+        <p class="muted">Archived and ongoing blog posts gathered under the Tech Thoughts label, capturing earlier writing on technology and related ideas.</p>
+        <div class="cta"><a class="btn btn-primary" href="https://umeshagunasinghe.blogspot.com/search/label/Tech%20Thoughts" target="_blank" rel="noopener" aria-label="Open Tech Thoughts blog in a new tab">Visit Blog</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="current-title">
+    <div class="card">
+      <h2 id="current-title">Currently</h2>
+      <p class="muted">Based in Germany. Open to full-time, part-time, or contract roles across the EU. Particularly interested in AI-integrated documentation, developer platforms, and complex system domains.</p>
+    </div>
+  </section>
+
+  <section aria-labelledby="tools-title">
+    <div class="grid-2">
+      <div class="card">
+        <h2 id="tools-title">Tools and domains</h2>
+        <p class="muted">Confluence, Jira, Figma, 2C8, Typora, Camtasia, Git, SourceTree, ClickLearn, Microsoft Word, PowerPoint, Visio, Canva, Lucidchart, Citrix, ChatGPT Enterprise, Copilot 365/Studio.</p>
+        <p class="muted">Domain exposure includes SaaS, cloud, ERP, security, middleware, telecommunications, aviation, microservices, accessibility, and enterprise product environments.</p>
+      </div>
+      <div class="card">
+        <h2>Education and languages</h2>
+        <p class="muted"><strong>MBA</strong> · Asia e University</p>
+        <p class="muted"><strong>BSc (Hons) Computing</strong> · Staffordshire University</p>
+        <p class="muted"><strong>Languages:</strong> English (Advanced), German (Elementary), Sinhala (Native)</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="approach-title">
+    <div class="card">
+      <h2 id="approach-title">Approach to Documentation</h2>
+      <p class="muted">Documentation is treated as an extension of the product, not an afterthought. Focus stays on structure, clarity, and long-term maintainability, with increasing integration of AI to accelerate workflows without compromising accuracy.</p>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-title">
+    <div class="split-band">
+      <div class="card quote-card">
+        <div class="small">Positioning</div>
+        <blockquote>Documentation designed as systems, not static content.</blockquote>
+      </div>
+      <div class="card">
+        <h2 id="contact-title">Contact</h2>
+        <div class="contact-list">
+          <div class="contact-line">Email: <a href="mailto:umeshagunasinghe@gmail.com">umeshagunasinghe@gmail.com</a></div>
+          <div class="contact-line">LinkedIn: <a href="https://www.linkedin.com/in/umeshagunasinghe/" target="_blank" rel="noopener">linkedin.com/in/umeshagunasinghe</a></div>
+          <div class="contact-line">Location: Berlin, Germany</div><div class="contact-line">CV: <a href="cv.pdf" target="_blank" rel="noopener">Download PDF</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>© 2026 Umesha Gunasinghe. Built for browser and mobile use with accessibility-focused markup.</footer>
+</main>
+
+
+<script>
+(function () {
+  const storageKey = "portfolio-theme";
+  const root = document.documentElement;
+
+  function applyTheme(theme) {
+    if (theme === "dark") {
+      root.setAttribute("data-theme", "dark");
+    } else {
+      root.removeAttribute("data-theme");
+    }
+    const btn = document.getElementById("theme-toggle");
+    if (btn) {
+      const dark = root.getAttribute("data-theme") === "dark";
+      btn.setAttribute("aria-pressed", dark ? "true" : "false");
+      btn.textContent = dark ? "Switch to light mode" : "Switch to dark mode";
+    }
+  }
+
+  const saved = localStorage.getItem(storageKey);
+  if (saved) applyTheme(saved);
+
+  window.addEventListener("DOMContentLoaded", function () {
+    applyTheme(localStorage.getItem(storageKey) || "light");
+    const btn = document.getElementById("theme-toggle");
+    if (btn) {
+      btn.addEventListener("click", function () {
+        const next = root.getAttribute("data-theme") === "dark" ? "light" : "dark";
+        localStorage.setItem(storageKey, next);
+        applyTheme(next);
+      });
+    }
+  });
+})();
+</script>
+
+</body>
+</html>
